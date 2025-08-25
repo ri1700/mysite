@@ -15,6 +15,11 @@
 		<servlet-name>UserServlet</servlet-name>
 		<servlet-class>com.bit2025.mysite.controller.UserServlet</servlet-class>
 	</servlet>
+
+	<servlet>
+		<servlet-name>GuestbookServlet</servlet-name>
+		<servlet-class>com.bit2025.mysite.controller.GuestbookServlet</servlet-class>
+	</servlet>
 	
 		
 	<!-- Servlet Mappings -->
@@ -30,6 +35,11 @@
 	<servlet-mapping>
 		<servlet-name>UserServlet</servlet-name>
 		<url-pattern>/user</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GuestbookServlet</servlet-name>
+		<url-pattern>/guestbook</url-pattern>
 	</servlet-mapping>
 
 	
