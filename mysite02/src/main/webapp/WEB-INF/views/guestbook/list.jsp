@@ -1,4 +1,9 @@
+<%@page import="com.bit2025.mysite.vo.GuestbookVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	List<GuestbookVo> list = (List<GuestbookVo>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +13,7 @@
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<h1>MySite</h1>
-			<ul>
-				<li><a href="">로그인</a><li>
-				<li><a href="">회원가입</a><li>
-				<li><a href="">회원정보수정</a><li>
-				<li><a href="">로그아웃</a><li>
-				<li>님 안녕하세요 ^^;</li>
-			</ul>
-		</div>
+		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="guestbook">
 				<form action="<%=request.getContextPath() %>/guestbook" method="post">
@@ -31,45 +27,42 @@
 							<td colspan=4><textarea name="message" id="content"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+							<td colspan=4 align=right><input type="submit" value=" 확인 "></td>
 						</tr>
 					</table>
 				</form>
 				<ul>
 					
-					
-					<li>
-						<table>
-							<tr>
-								<td>[4]</td>
-								<td>박준성</td>
-								<td>2015-11-10 11:22:30</td>
-								<td><a href="">삭제</a></td>
-							</tr>
-							<tr>
-								<td colspan=4>
-								안녕하세요. ^^;<br>
-								하하하하	
-								</td>
-							</tr>
-						</table>
-						<br>
-					</li>
-					
-					
+					<%
+						int index = 0;
+						int count = list.size();
+						
+						for(GuestbookVo vo : list) {
+					%>
+						<li>
+							<table>
+								<tr>
+									<td>[<%=count - index++%>]</td>
+									<td><%=vo.getName() %></td>
+									<td><%=vo.getRegDate() %></td>
+									<td><a href="<%=request.getContextPath() %>/guestbook?a=deleteform&id=<%=vo.getId() %>">삭제</a></td>
+								</tr>
+								<tr>
+									<td colspan=4>
+										<%=vo.getMessage().replaceAll("\n", "<br>") %>	
+									</td>
+								</tr>
+							</table>
+							<br>
+						</li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>
-		<div id="navigation">
-			<ul>
-				<li><a href="">박준성</a></li>
-				<li><a href="">방명록</a></li>
-				<li><a href="">게시판</a></li>
-			</ul>
-		</div>
-		<div id="footer">
-			<p>(c)opyright 2015, 2016, 2017, 2018</p>
-		</div>
+		<jsp:include page="/WEB-INF/views/includes/navigation.jsp" />
+		<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
 </html>

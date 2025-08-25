@@ -32,7 +32,6 @@ public class UserDao {
 		return result;
 	}
 
-	
 	private Connection getConnection() throws SQLException {
 		Connection con = null;
 		
