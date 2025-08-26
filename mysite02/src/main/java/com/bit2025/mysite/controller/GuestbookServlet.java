@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+// 요청을 받아서 dao, vo를 호출 후 jsp에 데이터를 전달
+
 public class GuestbookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -51,7 +53,6 @@ public class GuestbookServlet extends HttpServlet {
 		}
 			
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

@@ -10,6 +10,8 @@ import java.util.List;
 
 import com.bit2025.mysite.vo.GuestbookVo;
 
+// findall, List, insert
+
 public class GuestbookDao {
 
 	public List<GuestbookVo> findAll() {
@@ -39,6 +41,7 @@ public class GuestbookDao {
 		} 
 		
 		return result;
+		
 	}
 
 	public int insert(GuestbookVo vo) {

@@ -7,6 +7,8 @@ public class GuestbookVo {
 	private String regDate;
 	private String message;
 	
+	// getter,setter / tostring
+	
 	public Long getId() {
 		return id;
 	}

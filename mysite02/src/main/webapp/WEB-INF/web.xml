@@ -5,10 +5,25 @@
 	version="5.0">
 	<display-name>mysite02</display-name>
 	
+	<!-- Context Parameters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	
+	<!-- ContextLoadListener  -->	
+	<listener>
+		<listener-class>com.bit2025.web.ContextLoadListener</listener-class>
+	</listener>
+	
 	<!-- Servlets -->
 	<servlet>
 		<servlet-name>MainServlet</servlet-name>
 		<servlet-class>com.bit2025.mysite.controller.MainServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/servlet-context.xml</param-value>
+		</init-param>
 	</servlet>
 
 	<servlet>
@@ -21,7 +36,6 @@
 		<servlet-class>com.bit2025.mysite.controller.GuestbookServlet</servlet-class>
 	</servlet>
 	
-		
 	<!-- Servlet Mappings -->
 	<servlet-mapping>
 		<servlet-name>MainServlet</servlet-name>
@@ -41,7 +55,9 @@
 		<servlet-name>GuestbookServlet</servlet-name>
 		<url-pattern>/guestbook</url-pattern>
 	</servlet-mapping>
-
+	
+	
+	
 	
 	<!-- Welcome Files -->	
 	<welcome-file-list>

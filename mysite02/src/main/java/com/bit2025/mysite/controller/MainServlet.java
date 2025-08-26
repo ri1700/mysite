@@ -9,6 +9,13 @@ import java.io.IOException;
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
+	public void init() throws ServletException {
+		String config = getServletConfig().getInitParameter("config");
+		System.out.println("MainServlet.init() called:" + config);
+		super.init();
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/views/main/index.jsp").forward(request, response);
 	}
