@@ -4,18 +4,18 @@
 	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
 	version="5.0">
 	<display-name>mysite02</display-name>
-	
+
 	<!-- Context Parameters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
-	
-	<!-- ContextLoadListener  -->	
+
+	<!-- ContextLoadListener -->
 	<listener>
 		<listener-class>com.bit2025.web.ContextLoadListener</listener-class>
 	</listener>
-	
+
 	<!-- Servlets -->
 	<servlet>
 		<servlet-name>MainServlet</servlet-name>
@@ -35,7 +35,8 @@
 		<servlet-name>GuestbookServlet</servlet-name>
 		<servlet-class>com.bit2025.mysite.controller.GuestbookServlet</servlet-class>
 	</servlet>
-	
+
+
 	<!-- Servlet Mappings -->
 	<servlet-mapping>
 		<servlet-name>MainServlet</servlet-name>
@@ -55,11 +56,26 @@
 		<servlet-name>GuestbookServlet</servlet-name>
 		<url-pattern>/guestbook</url-pattern>
 	</servlet-mapping>
-	
-	
-	
-	
-	<!-- Welcome Files -->	
+
+
+	<!-- Common Errors -->
+	<error-page>
+		<error-code>400</error-code>
+		<location>/WEB-INF/views/errors/400.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/errors/500.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/errors/404.jsp</location>
+	</error-page>
+
+
+	<!-- Welcome Files -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>

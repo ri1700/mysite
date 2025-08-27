@@ -17,14 +17,31 @@
 	</properties>
 
 	<dependencies>
-	
+
 		<!-- mariadb jdbc driver -->
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
 			<version>3.5.2</version>
 		</dependency>
-			
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>jakarta.el</groupId>
+			<artifactId>jakarta.el-api</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
 		<!-- servlet api -->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
@@ -41,9 +58,8 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>mysite02</finalName>
 	</build>
-
 </project>
