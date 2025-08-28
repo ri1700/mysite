@@ -61,16 +61,5 @@
 
 	<build>
 		<finalName>mysite02</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-		    	<artifactId>tomcat7-maven-plugin</artifactId>
-		    	<version>2.2</version>
-		    	<configuration>
-					<url>${tomcat.deploy.url}</url>
-					<server>tomcat-bit2025</server>
-				</configuration>
-			</plugin>
-		</plugins>
 	</build>
 </project>
