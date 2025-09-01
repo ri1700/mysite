@@ -21,6 +21,7 @@ public class GuestbookDao {
 			Connection conn = getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("select id, name, message, date_format(reg_date, '%Y-%m-%d %h:%i:%s') from guestbook order by reg_date desc");	
 			ResultSet rs = pstmt.executeQuery();
+			
 		) {
 			while(rs.next()) {
 				Long id = rs.getLong(1);
@@ -43,7 +44,6 @@ public class GuestbookDao {
 		return result;
 		
 	}
-
 	public int insert(GuestbookVo vo) {
 		int count = 0;
 		
@@ -62,7 +62,6 @@ public class GuestbookDao {
 		
 		return count;		
 	}
-
 	public int deleteByIdAndPassword(Long id, String password) {
 		int count = 0;
 		
@@ -80,7 +79,6 @@ public class GuestbookDao {
 		
 		return count;		
 	}
-	
 	private Connection getConnection() throws SQLException{
 		Connection conn = null;
 		
