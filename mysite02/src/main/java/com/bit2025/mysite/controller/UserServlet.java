@@ -78,7 +78,6 @@ public class UserServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath());
 				return;
 			}
-			///////////////////////////
 
 			Long id = authUser.getId();
 			UserVo userVo = new UserDao().findById(id);
@@ -97,8 +96,7 @@ public class UserServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath());
 				return;
 			}
-			///////////////////////////
-
+			
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
 			String gender = request.getParameter("gender");
