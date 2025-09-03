@@ -10,11 +10,11 @@
 <link href="${pageContext.request.contextPath }/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div id="container">
+	<div id="container">	
 		<c:import url="/WEB-INF/views/includes/header.jsp"/>
 		<div id="content">
 			<div id="guestbook" class="delete-form">
-				<form method="post" action="${pageContext.request.contextPath }/guestbook/delete/${id}">
+				<form method="post" action="${pageContext.request.contextPath }/guestbook/delete/${id}">	// delete 이후 번호 찾아서 제거
 					<label>비밀번호</label>
 					<input type="password" name="password">
 					<input type="submit" value="확인">
