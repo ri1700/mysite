@@ -3,6 +3,7 @@
 <configuration>
 
 	<typeAliases>
+		<typeAlias type="com.bit2025.mysite.vo.GuestbookVo" alias = "guestbookvo"/>
 	</typeAliases>
 
 	<mappers>
