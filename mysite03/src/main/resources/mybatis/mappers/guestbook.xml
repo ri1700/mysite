@@ -2,44 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="guestbook">
-	<select id = "findByID" resultType="guestbookvo" parameterType="long">
+	<select id="findAll" resultType="guestbookvo">
 		<![CDATA[
-			select id,
-		   		   name,
-		   		   message,
-		   	       date_format(reg_date, '%Y-%m-%d %h:%i:%s') as regDate
-		
-				from guestbook 
-					where id = #{hazard}
+		  select id,
+				 name,
+				 message,
+				 date_format(reg_date, '%Y-%m-%d %h:%i:%s') as regDate
+	  		from guestbook
+		order by reg_date desc
 		]]>
 	</select>
 	
-	<select id = "findAll" resultType="guestbookvo">
+	<insert id="insert" parameterType="guestbookvo">
 		<![CDATA[
-			select id,
-		   	       name,
-		   	       message,
-		   	       date_format(reg_date, '%Y-%m-%d %h:%i:%s') as regDate
-		
-				from guestbook 
-					order by reg_date desc
-		]]>
-	</select>
-	
-	<insert id = "insert" parameterType="guestbookvo">
-		<![CDATA[
-			insert 
-				into guestbook 
-					values(null, #{name}, #{password}, #{message}, now())
-		]]>
+		insert
+		  into guestbook
+		values (null, #{name}, #{password}, #{message}, now())
+		]]>	
 	</insert>
 	
-	<delete id = "deleteByIdAndPassword" parameterType = "map">
+	<delete id="deleteByIdAndPassword" parameterType="map">
 		<![CDATA[
-			delete
-				from guestbook
-					where id = #{id} and password =#{password}
-		]]>
+		delete
+		  from guestbook
+		 where id=#{id} and password=#{password}
+		]]>	
 	</delete>
-
 </mapper>
