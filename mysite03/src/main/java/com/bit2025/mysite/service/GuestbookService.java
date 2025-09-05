@@ -16,7 +16,7 @@ public class GuestbookService {
 	public List<GuestbookVo> getMessageList() {
 		return guestbookRepository.findAll();
 	}
-	
+
 	public void addMessage(GuestbookVo vo) {
 		guestbookRepository.insert(vo);
 	}
