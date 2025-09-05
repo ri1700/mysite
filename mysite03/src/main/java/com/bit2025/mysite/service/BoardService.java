@@ -57,7 +57,7 @@ public class BoardService {
 		int blockCount = (int)Math.ceil((double)pageCount / PAGE_SIZE);
 		int currentBlock = (int)Math.ceil((double)currentPage / PAGE_SIZE);
 		
-		//2. 파라미터 page 값  검증
+		//2. 파라미터 page 값 검증
 		if(currentPage > pageCount) {
 			currentPage = pageCount;
 			currentBlock = (int)Math.ceil((double)currentPage / PAGE_SIZE);

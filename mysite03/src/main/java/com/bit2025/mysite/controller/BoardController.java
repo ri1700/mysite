@@ -1,7 +1,6 @@
 package com.bit2025.mysite.controller;
 
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.bit2025.mysite.service.BoardService;
 import com.bit2025.mysite.vo.BoardVo;
 import com.bit2025.mysite.vo.UserVo;
-
 import jakarta.servlet.http.HttpSession;
-
 
 @Controller
 @RequestMapping("/board")
@@ -33,6 +29,10 @@ public class BoardController {
 		Map<String, Object> map = boardService.getContentsList(page, keyword);
 
 		// model.addAllAttributes(map);
+		// for(String key : map.keySet()) {
+		//	model.addAttribute(key, map.get(key));
+		// }
+		
 		model.addAttribute("map", map);
 		model.addAttribute("keyword", keyword);
 		
