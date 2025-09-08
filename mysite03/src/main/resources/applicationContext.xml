@@ -11,7 +11,10 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
-
+	
+	<!--  aop : auto proxy -->
+	<aop:aspectj-autoproxy />
+	
 	<!-- DataSource (Connection Pool) -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
@@ -33,7 +36,7 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="com.bit2025.mysite.repository, com.bit2025.mysite.service">
+	<context:component-scan base-package="com.bit2025.mysite.repository, com.bit2025.mysite.service, com.bit2025.mysite.aspect">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />			
