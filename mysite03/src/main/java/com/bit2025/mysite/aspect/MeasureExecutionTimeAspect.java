@@ -13,11 +13,10 @@ import org.springframework.util.StopWatch;
 public class MeasureExecutionTimeAspect {
 	private static final Log logger = LogFactory.getLog(MeasureExecutionTimeAspect.class);
 
-	@Around("execution(* *..*.repository.*.*(..))")
+	@Around("execution(* *..*.repository.*.*(..)) || execution(* *..*.service.*.*(..)) || execution(* *..*.controller.*.*(..))")
 	public Object adviceAround(ProceedingJoinPoint pjp) throws Throwable {
 		StopWatch sw = new StopWatch();
 		sw.start();
-		
 		Object result = pjp.proceed();
 		
 		sw.stop();
@@ -26,7 +25,7 @@ public class MeasureExecutionTimeAspect {
 		String methodName = pjp.getSignature().getName();
 		String taskName = className + "." + methodName;
 		
-		logger.info("[Execution Time][" + taskName + "]"+ totalTime + "millis");
+		logger.info("[Execution Time][" + taskName + "] " + totalTime + "millis");
 		
 		return result;
 	}

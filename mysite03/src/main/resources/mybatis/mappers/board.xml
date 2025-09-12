@@ -42,7 +42,7 @@
 		   set title=#{title },
 		       contents=#{contents }
 		 where id=#{id }
-		   and user_id=#{userid }		
+		   and user_id=#{userId }		
 		]]>	
 	</update>
 	

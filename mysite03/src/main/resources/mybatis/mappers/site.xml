@@ -10,8 +10,20 @@
 				 profile_url as profileURL,
 				 description
 	  		from site
-		   where id = ${id}
+		   where id = #{id}
 		]]>
 	</select>
+
+	<update id="update" parameterType="sitevo">
+		<![CDATA[
+		  update site
+		     set id = #{id},
+				 title = #{title},
+				 welcome_message = #{welcomeMessage},
+				 profile_url = #{profileURL},
+				 description = #{description}
+		   where id = #{id}
+		]]>
+	</update>
 
 </mapper>

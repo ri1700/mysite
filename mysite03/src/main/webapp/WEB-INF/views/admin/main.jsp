@@ -24,6 +24,7 @@
 
 						<label class="block-label">프로필 이미지</label>
 						<img id="profile" src="${pageContext.request.contextPath }${siteVo.profileURL }" style="width:150px">
+						<input type="hidden" name="profileURL" value="${siteVo.profileURL }">
 						<input type="file" name="file">
 
 						<label class="block-label">사이트 설명</label>

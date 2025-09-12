@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+@charset "UTF-8";
 
 /* reset */
 *				{ margin:0; padding:0 }
@@ -12,11 +12,14 @@ div#navigation	{ float:left; width:120px;  }
 div#footer		{ clear:both; width:100% }
 
 /* header */
-div#header	h1				{ height:70px; line-height:70px; margin:0; padding-left:10px; color:#79B30B }
-div#header	ul				{ height:20px; margin:0 20px 10px 0 } 
-div#header	li				{ float:right }
+div#header	h1			{ float:left; height:70px; line-height:70px; margin:0; padding-left:10px; color:#79B30B }
+div#header	ul			{ clear:both; height:20px; margin:0 20px 10px 0 } 	
+div#header	li			{ float:right }
 div#header	li a 			{ color:#4F4F4F; font-weight:bold; margin-left:10px; text-decoration:none; }
-
+div#header	#languages		{ float:right; margin:20px 20px 0 0  }
+div#header	#languages a		{ display: inline-block; border: #111 2px solid; border-radius: 4px 0 0 4px; line-height:20px; height:20px; padding: 0 5px; color: grey; text-decoration:none }
+div#header	#languages a + a	{ border-radius: 0 4px 4px 0 }
+div#header	#languages a.active	{ color:#eee; background-color:#111; font-weight: bold }
 
 /* navigation */
 div#navigation ul			{ width:118px; margin-top:1px }
@@ -32,5 +35,4 @@ div#navigation li a:active	{ color:#4F4F4F; text-decoration:none; }
 /* footer */
 div#footer		{ background:#515151; color: #FFF }
 div#footer p	{ margin:0;padding:5px 10px }
-
 

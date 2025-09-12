@@ -18,5 +18,7 @@ public class SiteService {
 	}
 	
 	public void updateSite(SiteVo vo) {
+		vo.setId(1L);
+		siteRepository.update(vo);
 	}
 }
