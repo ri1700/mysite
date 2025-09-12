@@ -2,13 +2,19 @@ package com.bit2025.mysite.service;
 
 import org.springframework.stereotype.Service;
 
+import com.bit2025.mysite.repository.SiteRepository;
 import com.bit2025.mysite.vo.SiteVo;
 
 @Service
 public class SiteService {
-
+	private SiteRepository siteRepository;
+	
+	public SiteService(SiteRepository siteRepository) {
+		this.siteRepository = siteRepository;
+	}
+	
 	public SiteVo getSite() {
-		return null;
+		return siteRepository.findById(1L);
 	}
 	
 	public void updateSite(SiteVo vo) {

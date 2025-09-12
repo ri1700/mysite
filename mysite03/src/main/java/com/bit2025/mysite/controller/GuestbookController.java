@@ -31,12 +31,11 @@ public class GuestbookController {
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public String delete(@PathVariable("id") Long id) {
-		return "/guestbook/delete";
+		return "guestbook/delete";
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST)
-	public String delete(@PathVariable("id") Long id, @RequestParam(value="password", required=true, defaultValue="") String password) 
-	{
+	public String delete(@PathVariable("id") Long id, @RequestParam(value="password", required=true, defaultValue="") String password) {
 		guestbookService.deleteMessage(id, password);
 		return "redirect:/guestbook";
 	}

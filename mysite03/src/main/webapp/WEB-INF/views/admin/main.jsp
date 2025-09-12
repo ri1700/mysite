@@ -23,7 +23,7 @@
 						<input id="welcomeMessage" name="welcomeMessage" type="text" value="${siteVo.welcomeMessage }">
 
 						<label class="block-label">프로필 이미지</label>
-						<img id="profile" src="${pageContext.request.contextPath }/${siteVo.profileURL }">
+						<img id="profile" src="${pageContext.request.contextPath }${siteVo.profileURL }" style="width:150px">
 						<input type="file" name="file">
 
 						<label class="block-label">사이트 설명</label>
