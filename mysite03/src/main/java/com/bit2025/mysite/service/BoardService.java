@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bit2025.mysite.repository.BoardRepository;
 import com.bit2025.mysite.vo.BoardVo;
@@ -18,7 +19,9 @@ public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
 	
+	@Transactional
 	public void addContents(BoardVo boardVo) {
+		
 		if(boardVo.getGroupNo() != null) {
 			boardRepository.updateOrderNo(boardVo.getGroupNo(), boardVo.getOrderNo());
 		}
