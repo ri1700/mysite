@@ -9,9 +9,9 @@
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="com/bit2025/mysite/app/mybatis/mappers/guestbook.xml" />
-		<mapper resource="com/bit2025/mysite/app/mybatis/mappers/user.xml" />
-		<mapper resource="com/bit2025/mysite/app/mybatis/mappers/board.xml" />
-		<mapper resource="com/bit2025/mysite/app/mybatis/mappers/site.xml" />
+		<mapper resource="com/bit2025/mysite/config/app/mybatis/mappers/guestbook.xml" />
+		<mapper resource="com/bit2025/mysite/config/app/mybatis/mappers/user.xml" />
+		<mapper resource="com/bit2025/mysite/config/app/mybatis/mappers/board.xml" />
+		<mapper resource="com/bit2025/mysite/config/app/mybatis/mappers/site.xml" />
 	</mappers>
 </configuration>

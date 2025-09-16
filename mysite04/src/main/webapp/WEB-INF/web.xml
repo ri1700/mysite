@@ -5,10 +5,14 @@
 	version="5.0">
 	<display-name>mysite04</display-name>
 	
-	<!-- context parameter -->
+	<!-- Context Parameter -->
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext.xml</param-value>
+		<param-value>com.bit2025.mysite.config.AppConfig</param-value>
 	</context-param>
 
 	<!-- context loader listener -->
