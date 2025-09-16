@@ -1,5 +1,7 @@
 package com.bit2025.mysite.controller;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,11 +21,13 @@ public class AdminController {
 	private SiteService siteService;
 	private FileuploadService fileuploadService;
 	private ServletContext servletContext;
+	private ApplicationContext applicationContext;
 	
-	public AdminController(SiteService siteService, FileuploadService fileuploadService, ServletContext servletContext) {
+	public AdminController(SiteService siteService, FileuploadService fileuploadService, ServletContext servletContext, ApplicationContext applicationContext) {
 		this.siteService = siteService;
 		this.fileuploadService = fileuploadService;
 		this.servletContext = servletContext;
+		this.applicationContext = applicationContext;
 	}
 	
 	@RequestMapping({"", "/"})
@@ -44,7 +48,8 @@ public class AdminController {
 		servletContext.setAttribute("siteVo", vo);
 
 		// update SiteVo bean in application context 
-
+		SiteVo site = applicationContext.getBean(SiteVo.class);
+		BeanUtils.copyProperties(vo, site);
 		
 		return "redirect:/admin";
 	}
