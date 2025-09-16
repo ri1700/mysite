@@ -29,7 +29,6 @@ public class SecurityConfig implements WebMvcConfigurer {
 		resolvers.add(handlerMethodArgumentResolver());
 	}
 
-
 	// Interceptors
 	@Bean
 	public LoginInterceptor loginInterceptor() {

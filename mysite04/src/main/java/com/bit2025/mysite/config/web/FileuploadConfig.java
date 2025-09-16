@@ -31,5 +31,4 @@ public class FileuploadConfig implements WebMvcConfigurer {
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
 	}
-
 }
