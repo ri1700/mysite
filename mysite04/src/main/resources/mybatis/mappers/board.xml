@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<insert id="insert" parameterType="boardvo">
+		<choose>
+			<when test="groupNo == null">
+				<![CDATA[
+				insert
+				  into board
+				values (null,
+						#{title },
+						#{contents },
+						0,
+						now(),
+						(select ifnull(max(g_no), 0) + 1 from board a ),
+						1, 
+						0, 
+						#{userId })
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				insert
+				  into board
+				values (null,
+						#{title },
+						#{contents },
+						0,
+						now(),
+						#{groupNo },
+						#{orderNo }, 
+						#{depth }, 
+						#{userId })				
+				]]>
+			</otherwise>
+		</choose>
+	</insert>
+
+	<update id="update" parameterType="boardVo">
+		<![CDATA[
+		update board 
+		   set title=#{title },
+		       contents=#{contents }
+		 where id=#{id }
+		   and user_id=#{userId }		
+		]]>	
+	</update>
+	
+	<delete id="delete" parameterType="map" > 
+		<![CDATA[
+		delete
+		  from board 
+		 where id = #{id }
+		   and user_id = #{userId }
+		]]>	
+	</delete>
+
+	<select id="findById" parameterType="long" resultType="boardvo">
+		<![CDATA[
+		select	id,
+				title,
+				contents,
+				g_no as groupNo,
+				o_no as orderNo,
+				depth,
+				user_id as userId
+		   from board
+		  where id = #{id }		
+		]]>		
+	</select>
+	
+	<select id="findByIdAndUserId" parameterType="map" resultType="boardvo">
+		<![CDATA[
+		select	id,
+				title,
+				contents
+		   from board
+		  where id = #{id }
+		    and user_id = #{userId }		
+		]]>		
+	</select>	
+		
+	<select id="findAllByPageAndKeword" parameterType="map" resultType="boardvo">
+		<choose>
+			<when test="keyword == null or keyword == ''">
+				<![CDATA[
+				  select a.id,
+				  		 a.title,
+				  		 a.hit,
+				  		 date_format(a.reg_date, '%Y-%m-%d %p %h:%i:%s') as regDate,
+				  		 a.depth,
+				  		 b.name as userName,
+				  		 a.user_id as userId
+					from board a, user b
+				   where a.user_id = b.id
+				order by g_no desc, o_no asc
+				   limit #{startIndex }, #{size }				
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				  select a.id,
+				  		 a.title,
+				  		 a.hit,
+				  		 date_format(a.reg_date, '%Y-%m-%d %p %h:%i:%s') as regDate,
+				  		 a.depth, 
+				  		 b.name as userName,
+				  		 a.user_id as userId
+				  	from board a, user b
+				   where a.user_id = b.id
+				     and (title like '%${keyword }%' or contents like '%${keyword }%')
+				order by g_no desc, o_no asc
+				   limit #{startIndex }, #{size }				
+				]]>			
+			</otherwise>
+		</choose>
+	</select>
+
+	<update id="updateHit" parameterType="long">
+		<![CDATA[
+		update board
+		   set hit = hit + 1
+		 where id=#{id }
+		]]>	
+	</update>
+	
+	<update id="updateOrederNo" parameterType="map">
+		<![CDATA[
+		update board
+		   set o_no = o_no + 1
+		 where g_no = #{groupNo }
+		   and o_no >= #{orderNo }
+		]]>	
+	</update>	
+	
+	<select id="totalCount" parameterType="string" resultType="integer">
+		<choose>
+			<when test="_parameter == null or _parameter == ''">
+				<![CDATA[
+				select count(*) from board
+				]]>				
+			</when>
+			<otherwise>
+				<![CDATA[
+				select count(*) 
+				  from board
+				 where (title like '%${_parameter }%' or contents like '%${_parameter  }%') 
+				]]>				
+			</otherwise>
+		</choose>	
+	</select>
+</mapper>

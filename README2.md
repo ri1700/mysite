@@ -194,6 +194,6 @@
    - Spring Resource Handler: External Resources(files uploaded)
    - Spring Resource Handler: assets(images, css, js, etc..)
    - Default Servlet Handler: disable
-8. 기능
 
-   - mysite06와 동일
+8. 기능
+ - mysite06와 동일
