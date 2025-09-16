@@ -6,18 +6,24 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
 
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
+@PropertySource("classpath:com/bit2025/mysite/config/web/fileupload.properties")
 public class FileuploadService {
-	private static final String SAVE_PATH = "/mysite-uploads";
-	private static final String URL = "/upload-images";
+	private Environment env;
+	
+	public FileuploadService(Environment env) {
+		this.env = env;
+	}
 	
 	public String restore(MultipartFile multipartFile) throws RuntimeException {
 		try {
 			
-			File uploadDirectory = new File(SAVE_PATH);
+			File uploadDirectory = new File(env.getProperty("fileupload.uploadLocation"));
 			
 			if(!uploadDirectory.exists() && !uploadDirectory.mkdirs()) {
 				return null;
@@ -36,11 +42,11 @@ public class FileuploadService {
 			System.out.println("fileSize:" + fileSize);
 			
 			byte[] data = multipartFile.getBytes();
-			OutputStream os = new FileOutputStream(SAVE_PATH + "/" + saveFilename);
+			OutputStream os = new FileOutputStream(env.getProperty("fileupload.uploadLocation") + "/" + saveFilename);
 			os.write(data);
 			os.close();
 		
-			return URL + "/" + saveFilename;
+			return env.getProperty("fileupload.resourceUrl") + "/" + saveFilename;
 			
 		} catch(IOException ex) {
 			throw new RuntimeException(ex);
