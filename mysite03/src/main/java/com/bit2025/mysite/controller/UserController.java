@@ -35,7 +35,7 @@ public class UserController {
 			return "user/join";
 		}
 		
-		// userService.join(userVo);
+		userService.join(userVo);
 		return "redirect:/user/joinsuccess";
 	}
 
