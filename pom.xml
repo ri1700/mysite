@@ -6,6 +6,7 @@
 	<artifactId>mysite</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -24,6 +25,7 @@
 		<module>mysite02</module>
 		<module>mysite03</module>
 		<module>mysite04</module>
+		<module>mysite05</module>
 	</modules>
 	
 </project>

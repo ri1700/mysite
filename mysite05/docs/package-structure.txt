@@ -1,0 +1,34 @@
+Package 구조
+
+[src/main/java]
+|--- com.bit2025.mysite	
+|	 |--- config
+|	 |	  |--- AppConfig.java
+|	 |	  |--- WebConfig.java
+|	 |	  |--- app
+|	 |	  |	   |--- DBConfig.java
+|	 |	  |	   |--- MyBatisConfig.java
+|	 |	  |--- web
+|	 |	       |--- MvcConfig.java
+|	 |	       |--- SecurityConfig.java
+|	 |	       |--- LocaleConfig.java
+|	 |	       |--- FileuploadConfig.java
+|	 |--- controller
+|	 |--- service
+|	 |--- repository
+
+[src/main/resources]
+|--- com.bit2025.mysite
+|	 |--- config
+|	 |	  |--- app
+|	 |	  |	   |--- jdbc.properties
+|	 |	  |	   |--- mybatis
+|	 |	  |	        |--- configuration.xml
+|	 |	  |	        |--- mappers
+|	 |	  |	             |--- board.xml
+|	 |	  |	             |--- user.xml
+|	 |	  |--- web
+|	 |	  |	   |--- fileupload.properties
+|	 |	  |	   |--- messages
+|	 |	  |    |      |--- message_ko.properties
+|	 |	  |    |      |--- message_en.properties
