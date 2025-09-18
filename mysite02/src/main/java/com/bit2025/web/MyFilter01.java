@@ -18,16 +18,15 @@ public class MyFilter01 extends HttpFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		/* request */
-		System.out.println("MyFilter01.doFilter() called: request processing");
+		/* request 처리 */
 		request.setAttribute("test01", "hello");
 		
+		/* response 헤더 처리 */
 		chain.doFilter(request, response);
 		
-		/* response */
 		System.out.println("MyFilter01.doFilter() called: response processing");
 	}
-
+	
 	public void destroy() {
 	}
 }
