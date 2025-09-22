@@ -3,6 +3,7 @@ package com.bit2025.mysite.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,9 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.bit2025.mysite.security.Auth;
-import com.bit2025.mysite.security.AuthUser;
 import com.bit2025.mysite.service.BoardService;
 import com.bit2025.mysite.vo.BoardVo;
 import com.bit2025.mysite.vo.UserVo;
@@ -49,58 +47,52 @@ public class BoardController {
 		return "board/view";
 	}
 	
-	@Auth
 	@RequestMapping("/delete/{id}")
 	public String delete(
-		@AuthUser UserVo authUser, 
+		Authentication authentication, 
 		@PathVariable("id") Long boardId,
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
 		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
-		boardService.deleteContents(boardId, authUser.getId());
+		boardService.deleteContents(boardId, ((UserVo)authentication.getPrincipal()).getId());
 		return "redirect:/board?p=" + page + "&kwd=" + keyword;
 	}
 	
-	@Auth
 	@RequestMapping(value="/modify/{id}", method=RequestMethod.GET)	
-	public String modify(@AuthUser UserVo authUser, @PathVariable("id") Long id, Model model) {
-		BoardVo boardVo = boardService.getContents(id, authUser.getId());
+	public String modify(Authentication authentication, @PathVariable("id") Long id, Model model) {
+		BoardVo boardVo = boardService.getContents(id, ((UserVo)authentication.getPrincipal()).getId());
 		model.addAttribute("boardVo", boardVo);
 		return "board/modify";
 	}
 
-	@Auth
 	@RequestMapping(value="/modify", method=RequestMethod.POST)	
 	public String modify(
-		@AuthUser UserVo authUser, 
+		Authentication authentication, 
 		BoardVo boardVo,
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
 		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
-		boardVo.setUserId(authUser.getId());
+		boardVo.setUserId(((UserVo)authentication.getPrincipal()).getId());
 		boardService.modifyContents(boardVo);
 		return "redirect:/board/view/" + boardVo.getId() + 
 				"?p=" + page + 
 				"&kwd=" + keyword;
 	}
 
-	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.GET)	
 	public String write() {
 		return "board/write";
 	}
 
-	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.POST)	
 	public String write(
-		@AuthUser UserVo authUser,
+		Authentication authentication,
 		@ModelAttribute BoardVo boardVo,
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
 		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
-		boardVo.setUserId(authUser.getId());
+		boardVo.setUserId(((UserVo)authentication.getPrincipal()).getId());
 		boardService.addContents(boardVo);
 		return	"redirect:/board?p=" + page + "&kwd=" + keyword;
 	}
 
-	@Auth
 	@RequestMapping(value="/reply/{id}")	
 	public String reply(@PathVariable("id") Long id, Model model) {
 		BoardVo boardVo = boardService.getContents(id);

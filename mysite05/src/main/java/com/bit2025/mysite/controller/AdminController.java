@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bit2025.mysite.security.Auth;
 import com.bit2025.mysite.service.FileuploadService;
 import com.bit2025.mysite.service.SiteService;
 import com.bit2025.mysite.vo.SiteVo;
@@ -16,7 +15,6 @@ import jakarta.servlet.ServletContext;
 
 @Controller
 @RequestMapping("/admin")
-@Auth(role="ADMIN")
 public class AdminController {
 	private SiteService siteService;
 	private FileuploadService fileuploadService;
@@ -68,5 +66,4 @@ public class AdminController {
 	public String user() {
 		return "admin/user";
 	}
-	
 }

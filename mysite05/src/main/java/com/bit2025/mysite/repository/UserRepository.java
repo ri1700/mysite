@@ -1,10 +1,13 @@
 package com.bit2025.mysite.repository;
 
 import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.bit2025.mysite.vo.UserVo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
 public class UserRepository {
@@ -18,9 +21,10 @@ public class UserRepository {
 	public UserVo findById(Long id) {
 		return sqlSession.selectOne("user.findById", id);
 	}
-
-	public UserVo findByEmail(String email) {
-		return sqlSession.selectOne("user.findByEmail", email);
+	
+	public <R> R findByEmail(String email, Class<R> resultType) {
+		Map<String, Object> map = sqlSession.selectOne("user.findByEmail", email);
+		return new ObjectMapper().convertValue(map, resultType);
 	}
 	
 	public UserVo findByEmailAndPassword(String email, String password) {
@@ -31,4 +35,3 @@ public class UserRepository {
 		return sqlSession.update("user.update", vo);
 	}
 }
-
