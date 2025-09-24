@@ -1,0 +1,26 @@
+# spring configuration
+spring:
+   application:
+      name: mysite06
+
+   devtools:
+      restart:
+         enabled: true		
+      livereload:
+         enabled: true
+
+# aop
+   aop:
+      auto: true
+      proxy-target-class: true
+
+   mvc:
+      view:
+         prefix: /WEB-INF/views/
+         suffix: .jsp						
+
+# server configuration
+server:
+   port: 8080
+   servlet:
+      context-path: /
