@@ -11,7 +11,7 @@
 	<groupId>com.bit2025</groupId>
 	<artifactId>mysite06</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	
 	<properties>
 		<java.version>21</java.version>
