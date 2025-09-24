@@ -35,3 +35,4 @@ public class UserRepository {
 		return sqlSession.update("user.update", vo);
 	}
 }
+

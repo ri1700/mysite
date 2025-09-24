@@ -66,4 +66,5 @@ public class AdminController {
 	public String user() {
 		return "admin/user";
 	}
+	
 }
