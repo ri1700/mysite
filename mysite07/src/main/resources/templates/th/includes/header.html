@@ -1,0 +1,42 @@
+<script>
+window.addEventListener("load", function(){
+	var anchors = document.querySelectorAll('#languages a');
+	
+	anchors.forEach(function(el){
+		el.addEventListener("click", function(e) {
+			e.preventDefault();
+			document.cookie = 
+				"lang=" + this.getAttribute("data-lang") + ";" + 
+				"path=" + "[[@{/}]]" + ";" + 
+				"max-age=" + (30*24*60*60);
+			location.reload();	
+		});
+	});
+	
+});
+</script>
+
+		<div id="header">
+			<h1 th:text='${@site.title }'></h1>
+			<div id="languages">
+				<th:block th:if='${lang == "ko"}'>				
+					<a href="" data-lang="ko" class="active">KO</a><a href="" data-lang="en">EN</a>
+				</th:block>
+				<th:block th:unless='${lang == "ko"}'>				
+					<a href="" data-lang="ko">KO</a><a href="" data-lang="en" class="active">EN</a>
+				</th:block>
+			</div>
+			<ul>
+				<th:block sec:authorize="!isAuthenticated()">
+					<li><a th:href="@{/user/login}">로그인</a></li>
+					<li><a th:href="@{/user/join}">회원가입</a></li>					
+				</th:block>
+				<th:block sec:authorize="isAuthenticated()">
+					<li><a th:href="@{/user/update}">회원정보수정</a></li>
+					<li><a th:href="@{/user/logout}">로그아웃</a></li>
+					<li><th:block sec:authentication="principal.name"></th:block>님 안녕하세요 ^^;</li>
+				</th:block>
+			</ul>
+						
+		</div>
+

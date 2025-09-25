@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>mysite</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link th:href="@{/assets/css/main.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="container">
+		<th:block th:include="th/includes/header"></th:block>
+		<div id="wrapper">
+			<div id="content">
+				<div id="site-introduction">
+					<img id="profile" th:src="@{(${servletContext.getAttribute('siteVo').profileURL})}" style="width:150px">
+					<h2 th:text='${servletContext.getAttribute("siteVo").welcomeMessage }'></h2>
+					<p th:text='${#strings.replace(servletContext.getAttribute("siteVo").description, "\n", "<br>")}'></p>
+				</div>
+			</div>
+		</div>
+		<th:block th:include="th/includes/navigation"></th:block>
+		<th:block th:include="th/includes/footer"></th:block>
+	</div>
+</body>
+
+</html>

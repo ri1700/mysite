@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:text='${"hello, world"}' th:title='${"hello, world"}'></h1>
+	<th:block th:text='${"hello, world"}'></th:block><br>
+	
+	<h1>[[${"hello, world"}]]</h1>
+	[[${"hello, world"}]]<br>
+</body>
+</html>

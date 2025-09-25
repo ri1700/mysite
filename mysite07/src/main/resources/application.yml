@@ -1,0 +1,70 @@
+# spring configuration
+spring:
+   application:
+      name: mysite06
+
+   devtools:
+      restart:
+         enabled: true		
+      livereload:
+         enabled: true
+   
+   # aop
+   aop:
+      auto: true
+      proxy-target-class: true
+
+   thymeleaf:
+      check-template-location: true
+      mode: HTML
+      prefix: classpath:templates/
+      suffix: .html
+      encoding: UTF-8
+      view-names: th/*
+      cache: false
+
+   mvc:
+      static-path-pattern: /assets/**	
+   #   view:
+   #      prefix: /WEB-INF/views/
+   #      suffix: .jsp
+
+   web:
+      resources:
+         static-locations: [classpath:assets/, file:/mysite-uploads/]
+
+   servlet:
+      multipart:
+         enabled: true
+         max-file-size: 10485760
+         max-request-size: 104857600
+         file-size-threshold: 5242880
+
+   # message resources(i18n)
+   messages:
+      basename: messages/message
+      encoding: utf-8
+
+   # datasource(connection pool)		 
+   datasource:
+      driver-class-name: org.mariadb.jdbc.Driver		 
+      url: jdbc:mariadb://192.168.0.183:3306/webdb
+      username: webdb
+      password: webdb
+      hikari:
+         minimum-idle: 10
+         maximum-pool-size: 20 
+
+# mybatis
+mybatis:
+   config-location: classpath:mybatis/configuration.xml
+
+# server configuration
+server:
+   port: 8088
+   servlet:
+      context-path: /mysite07
+
+# logging
+logging:
+   config: classpath:logback.xml
